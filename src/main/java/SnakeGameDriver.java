@@ -1,13 +1,17 @@
 import java.awt.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class SnakeGameDriver {
 
     @SuppressWarnings( "resource" )
     public static void main( String[] args ) {
         Point playerPosition = new Point( 10, 9 );
-        Point snakePosition = new Point( 30, 2 );
         Point goldPosition = new Point( 6, 6 );
         Point doorPosition = new Point( 0, 5 );
+        Point[] snakePositions = new Point[5];
+        int snakeIdx = 0;
+        snakePositions[ snakeIdx] = new Point(30, 2);
         boolean rich = false;
 
         while ( true ) {
@@ -19,7 +23,7 @@ public class SnakeGameDriver {
                     Point p = new Point( x, y );
                     if ( playerPosition.equals( p ) )
                         System.out.print( '&' );
-                    else if ( snakePosition.equals( p ) )
+                    else if ( Arrays.asList(snakePositions).contains( p ) )
                         System.out.print( 'S' );
                     else if ( goldPosition.equals( p ) )
                         System.out.print( '$' );
@@ -36,7 +40,7 @@ public class SnakeGameDriver {
                 System.out.println( "Gewonnen!" );
                 return;
             }
-            if ( playerPosition.equals( snakePosition ) ) {
+            if ( Arrays.asList(snakePositions).contains(playerPosition)) {
                 System.out.println( "ZZZZZZZ. Die Schlange hat dich!" );
                 return;
             }
@@ -47,7 +51,7 @@ public class SnakeGameDriver {
 
             // Konsoleneingabe und Spielerposition verändern
 
-            switch ( new java.util.Scanner( System.in ).next() ) {
+            switch ( new Scanner( System.in ).next() ) {
                 // Spielfeld ist im Bereich 0/0 .. 79/19
                 case "h" : playerPosition.y = Math.max(  0, playerPosition.y - 1 ); break;
                 case "t" : playerPosition.y = Math.min(  19, playerPosition.y + 1 ); break;
@@ -57,14 +61,19 @@ public class SnakeGameDriver {
 
             // Schlange bewegt sich Richtung Spieler
 
-            if ( playerPosition.x < snakePosition.x )
-                snakePosition.x--;
-            else if ( playerPosition.x > snakePosition.x )
-                snakePosition.x++;
-            if ( playerPosition.y < snakePosition.y )
-                snakePosition.y--;
-            else if ( playerPosition.y > snakePosition.y )
-                snakePosition.y++;
+            Point snakeHead = new Point(snakePositions[snakeIdx].x, snakePositions[snakeIdx].y);
+
+            if ( playerPosition.x < snakeHead.x )
+                snakeHead.x--;
+            else if ( playerPosition.x > snakeHead.x )
+                snakeHead.x++;
+            if ( playerPosition.y < snakeHead.y )
+                snakeHead.y--;
+            else if ( playerPosition.y > snakeHead.y )
+                snakeHead.y++;
+
+            snakeIdx = (snakeIdx + 1) % snakePositions.length;
+            snakePositions[snakeIdx] = snakeHead;
         } // end while
     }
 }
