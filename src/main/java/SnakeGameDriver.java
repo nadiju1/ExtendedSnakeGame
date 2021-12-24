@@ -9,10 +9,11 @@ public class SnakeGameDriver {
         boolean rich = false;
 
         while ( true ) {
+
             // Raster mit Figuren zeichnen
 
-            for ( int y = 0; y < 10; y++ ) {
-                for ( int x = 0; x < 40; x++ ) {
+            for ( int y = 0; y < 20; y++ ) {
+                for ( int x = 0; x < 80; x++ ) {
                     java.awt.Point p = new java.awt.Point( x, y );
                     if ( playerPosition.equals( p ) )
                         System.out.print( '&' );
@@ -45,11 +46,11 @@ public class SnakeGameDriver {
             // Konsoleneingabe und Spielerposition verändern
 
             switch ( new java.util.Scanner( System.in ).next() ) {
-                // Spielfeld ist im Bereich 0/0 .. 39/9
+                // Spielfeld ist im Bereich 0/0 .. 79/19
                 case "h" : playerPosition.y = Math.max(  0, playerPosition.y - 1 ); break;
-                case "t" : playerPosition.y = Math.min(  9, playerPosition.y + 1 ); break;
+                case "t" : playerPosition.y = Math.min(  19, playerPosition.y + 1 ); break;
                 case "l" : playerPosition.x = Math.max(  0, playerPosition.x - 1 ); break;
-                case "r" : playerPosition.x = Math.min( 39, playerPosition.x + 1 ); break;
+                case "r" : playerPosition.x = Math.min( 79, playerPosition.x + 1 ); break;
             }
 
             // Schlange bewegt sich Richtung Spieler
