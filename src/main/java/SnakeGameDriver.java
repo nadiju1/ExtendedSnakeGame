@@ -1,11 +1,13 @@
+import java.awt.*;
+
 public class SnakeGameDriver {
 
     @SuppressWarnings( "resource" )
     public static void main( String[] args ) {
-        java.awt.Point playerPosition = new java.awt.Point( 10, 9 );
-        java.awt.Point snakePosition = new java.awt.Point( 30, 2 );
-        java.awt.Point goldPosition = new java.awt.Point( 6, 6 );
-        java.awt.Point doorPosition = new java.awt.Point( 0, 5 );
+        Point playerPosition = new Point( 10, 9 );
+        Point snakePosition = new Point( 30, 2 );
+        Point goldPosition = new Point( 6, 6 );
+        Point doorPosition = new Point( 0, 5 );
         boolean rich = false;
 
         while ( true ) {
@@ -14,7 +16,7 @@ public class SnakeGameDriver {
 
             for ( int y = 0; y < 20; y++ ) {
                 for ( int x = 0; x < 80; x++ ) {
-                    java.awt.Point p = new java.awt.Point( x, y );
+                    Point p = new Point( x, y );
                     if ( playerPosition.equals( p ) )
                         System.out.print( '&' );
                     else if ( snakePosition.equals( p ) )
