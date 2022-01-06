@@ -30,7 +30,7 @@ public class SnakeGameDriver {
         Point springboardPosition2 = new Point((int) (Math.random() * 69), (int) (Math.random() * 14));
         Point swordPosition2 = new Point((int) (Math.random() * 69), (int) (Math.random() * 14));
 
-        //Level 3 Elemente
+        // Level 3 Elemente
         Point doorPosition3 = new Point((int) (Math.random() * 79), (int) (Math.random() * 14));
         Point[] goldPositions2 = new Point[3];
         goldPositions2[0] = new Point((int) (Math.random() * 79), (int) (Math.random() * 14));
@@ -238,7 +238,7 @@ public class SnakeGameDriver {
                 goldPositions2[2].setLocation(-1, -1);
             }
 
-            // Konsoleneingabe und Spielerposition verändern
+            // Konsoleneingabe und Spielerposition verändern -> gehört in Player.java
 
             switch (new Scanner(System.in).next()) {
 
@@ -321,7 +321,7 @@ public class SnakeGameDriver {
                     break;
             }
 
-            // Schlange bewegt sich Richtung Spieler
+            // Schlange bewegt sich Richtung Spieler -> gehört in Snake.java
 
                 if (stepCount > 15) {
                     if (playerPosition.x < snakeHead.x)
