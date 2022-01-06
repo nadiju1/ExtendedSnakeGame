@@ -208,36 +208,6 @@ public class SnakeGameDriver {
                 goldPosition.setLocation(-1, -1);
             }
 
-            if (playerPosition.equals(goldPositions[0])) {
-                ++achievedPoints;
-                rich = true;
-                goldPositions[0].setLocation(-1, -1);
-            }
-
-            if (playerPosition.equals(goldPositions[1])) {
-                ++achievedPoints;
-                rich = true;
-                goldPositions[1].setLocation(-1, -1);
-            }
-
-            if (playerPosition.equals(goldPositions2[0])) {
-                ++achievedPoints;
-                rich = true;
-                goldPositions2[0].setLocation(-1, -1);
-            }
-
-            if (playerPosition.equals(goldPositions2[1])) {
-                ++achievedPoints;
-                rich = true;
-                goldPositions2[1].setLocation(-1, -1);
-            }
-
-            if (playerPosition.equals(goldPositions2[2])) {
-                ++achievedPoints;
-                rich = true;
-                goldPositions2[2].setLocation(-1, -1);
-            }
-
             // Konsoleneingabe und Spielerposition verändern -> gehört in Player.java
 
             switch (new Scanner(System.in).next()) {
