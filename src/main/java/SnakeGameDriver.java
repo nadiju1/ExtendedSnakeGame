@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.util.Arrays;
-import java.util.Scanner;
 import java.util.prefs.Preferences;
 
 public class SnakeGameDriver {

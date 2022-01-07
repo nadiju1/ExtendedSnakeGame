@@ -1,5 +1,3 @@
-import java.awt.*;
-
 public class Snake {
 
     public static void addSnakeMovement() {
