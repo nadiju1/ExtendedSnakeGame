@@ -8,6 +8,7 @@ public class SnakeGameDriver {
     static int stepCount= 0;
     static int snakeIdx = 0;
     static Point[] snakePositions = new Point[3];
+    static Point snakeHead = new Point ((int) (Math.random()*59),(int) (Math.random()*9) );
 
     @SuppressWarnings( "resource" )
     public static void main( String[] args ) {
@@ -48,8 +49,8 @@ public class SnakeGameDriver {
 
         while (true) {
 
-            Point snakeHead = new Point ((int) (Math.random()*59),(int) (Math.random()*9) );
-            Snake.addSnakeMovement();
+
+            // Snake.addSnakeMovement();
 
             if (level == 1) {
                 BoardLevel.drawLevelOne(playerPosition, levelOneElements[0],
@@ -283,7 +284,7 @@ public class SnakeGameDriver {
                     }
                     break;
             }
-            // Snake.addSnakeMovement();
+            Snake.addSnakeMovement();
             }
         }
     }
