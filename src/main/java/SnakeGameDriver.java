@@ -202,10 +202,10 @@ public class SnakeGameDriver {
 
             if (Arrays.asList(snakePositions).contains(playerPosition)) {
                 shieldCount++;
-                if (shieldCount > 5) {
+                if (shieldActive && shieldCount > 5) {
                     shieldActive = false;
                 }
-                if (swordActive) {
+                else if (swordActive) {
                     snakeHead.setLocation(-10, -10);
                 } else if (!shieldActive){
                     System.out.println("ZZZZZZZ. Die Schlange hat dich!");
