@@ -11,7 +11,7 @@ public class TestSnake {
 
         Snake testSnake = new Snake(45, 5);
         Point testPlayerPosition = new Point(1, 1);
-        for (int i = 0; i < 0; i++) {
+        for (int i = 0; i < 15; i++) {
             testSnake.addSnakeMovement(i, testPlayerPosition);
         }
         Assert.assertEquals(45, testSnake.getPositionX(0));
@@ -24,7 +24,7 @@ public class TestSnake {
         Point testPlayerPosition = new Point(45, 10);
         testSnake.addSnakeMovement(20, testPlayerPosition);
         Assert.assertEquals(45, testSnake.getPositionX(1)); // arrayNumber 1, weil die Arrays immer in einer Rotation verändert werden
-        Assert.assertEquals(7, testSnake.getPositionY(1)); //immer xKoordinate + 1 wegen den Zickzacklauf
+        Assert.assertEquals(7, testSnake.getPositionY(1)); //immer xKoordinate + 1 wegen den Zickzacklauf außer xSpielerkoordinate < als Schlangenkoordinate
 
     }
     @Test

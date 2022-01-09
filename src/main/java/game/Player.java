@@ -5,7 +5,7 @@ import java.awt.*;
 public class Player {
 
     Point position = new Point();
-    int stepCount = 0;
+    int stepCount = 0; // wird verwendet, damit der Spieler ein paar Züge hat, bevor sich die Schlange bewegt
 
     public Player (){
         position.setLocation((int) (Math.random() * 59), (int) (Math.random() * 9));  
@@ -28,8 +28,8 @@ public class Player {
             case "w":
                 if (SnakeGameDriver.potionActive) {
                     SnakeGameDriver.potionCount++;
-                    position.y = Math.max(0, position.y - 2);
-                    if (SnakeGameDriver.potionCount > 8) {
+                    position.y = Math.max(0, position.y - 2); //Math.max verhindert, dass derSoieleraußerhalb des Spielfelds laufen kann
+                    if (SnakeGameDriver.potionCount > 8) {    //damit der Zaubertrank nur 7 Züge aktiv ist
                         SnakeGameDriver.potionActive = false;
                     }
                 } else if (SnakeGameDriver.springboardActive) {

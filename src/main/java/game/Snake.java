@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Snake {
 
-    Point[] positions = new Point[3];
+    Point[] positions = new Point[3]; // positions.length gibt Länge der Schlange an
     Point head;
     int snakeIdx = 0;
 
@@ -12,7 +12,7 @@ public class Snake {
         positions[snakeIdx] = new Point ((int) (Math.random() * 59), (int) (Math.random() * 9));
     }
 
-    public Snake (int x, int y){    //wird zum Testen gebrtaucht
+    public Snake (int x, int y){    //wird zum Testen gebraucht
         positions[0] = new Point (x,y);
     }
 
@@ -35,7 +35,7 @@ public class Snake {
                 head.y++;
             }
 
-            snakeIdx = (snakeIdx + 1) % positions.length;
+            snakeIdx = (snakeIdx + 1) % positions.length; //sorgt für eine Rotation der Arrays, dadurch bewegt sich die Schlange
             positions[snakeIdx] = head;
         }
     }

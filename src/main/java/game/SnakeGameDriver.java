@@ -58,6 +58,9 @@ public class SnakeGameDriver {
         Preferences pref = Preferences.userNodeForPackage(SnakeGameDriver.class);
         final String item1 = "item1";
 
+        //Spielanleitung
+        System.out.println();
+
         while (true) {
 
             if (level == 1) {
@@ -124,9 +127,9 @@ public class SnakeGameDriver {
             if (player.stepCount > 15) System.out.println(snakeAwake);
 
             snake.addSnakeMovement(player.stepCount, player.position);
+
             String input = new Scanner(System.in).next();
             player.addPlayerMovement(input);
-            
 
             // Status feststellen -> collision detection
 
@@ -203,7 +206,7 @@ public class SnakeGameDriver {
                 swordPosition3.setLocation(-6, -7);
             }
             if (shieldActive && shieldCount > 8) {
-               shieldActive = false;
+               shieldActive = false; // verhindert, dass das Schild dauerhaft aktiv ist
             }
 
             if (Arrays.asList(snake.positions).contains(player.position)) {
