@@ -140,6 +140,7 @@ public class SnakeGameDriver {
                 springboardActive = false;
                 rich = false;
                 level++;
+                snake.setRandomPosition(level);
             }
 
             if (level == 3 && rich && player.position.equals(doorPosition3)) {
@@ -200,12 +201,12 @@ public class SnakeGameDriver {
                 swordActive = true;
                 swordPosition3.setLocation(-6, -7);
             }
+            if (shieldActive && shieldCount > 8) {
+               shieldActive = false;
+            }
 
             if (Arrays.asList(snake.positions).contains(player.position)) {
-                if (shieldActive && shieldCount > 8) {
-                    shieldActive = false;
-                }
-                else if (swordActive) {
+                if (swordActive) {
                     snake.head.setLocation(-10, -10);
                 } else if (!shieldActive){
                     System.out.println("ZZZZZZZ. Die Schlange hat dich!");

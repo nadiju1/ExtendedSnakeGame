@@ -36,5 +36,17 @@ public class Snake {
         }
     }
 
+    public void setRandomPosition (int level){
+        snakeIdx = 0;
+        positions[1] = null;
+        positions[2] = null;
+        if (level == 2){
+            positions[snakeIdx] = new Point((int) (Math.random() * 69), (int) (Math.random() * 14));
+        }
+        if (level == 3){
+            positions[snakeIdx] = new Point((int) (Math.random() * 79), (int) (Math.random() * 14));
+        }
+    }
+
 
 }
