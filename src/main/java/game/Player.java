@@ -5,11 +5,15 @@ import java.util.Scanner;
 public class Player {
     public static void addPlayerMovement() {
 
+        SnakeGameDriver.stepCount++;
+
+        if (SnakeGameDriver.shieldActive) {
+            SnakeGameDriver.shieldCount++;
+        }
+
         switch (new Scanner(System.in).next()) {
 
             case "w":
-                SnakeGameDriver.stepCount++;
-                SnakeGameDriver.shieldCount++;
                 if (SnakeGameDriver.potionActive) {
                     SnakeGameDriver.potionCount++;
                     SnakeGameDriver.playerPosition.y = Math.max(0, SnakeGameDriver.playerPosition.y - 2);
@@ -25,8 +29,6 @@ public class Player {
                 break;
 
             case "s":
-                SnakeGameDriver.stepCount++;
-                SnakeGameDriver.shieldCount++;
                 if (SnakeGameDriver.potionActive) {
                     SnakeGameDriver.potionCount++;
                     SnakeGameDriver.playerPosition.y = Math.max(0, SnakeGameDriver.playerPosition.y + 2);
@@ -46,8 +48,6 @@ public class Player {
                 break;
 
             case "a":
-                SnakeGameDriver.stepCount++;
-                SnakeGameDriver.shieldCount++;
                 if (SnakeGameDriver.potionActive) {
                     SnakeGameDriver.potionCount++;
                     SnakeGameDriver.playerPosition.x = Math.max(0, SnakeGameDriver.playerPosition.x - 2);
@@ -63,8 +63,6 @@ public class Player {
                 break;
 
             case "d":
-                SnakeGameDriver.stepCount++;
-                SnakeGameDriver.shieldCount++;
                 if (SnakeGameDriver.potionActive) {
                     SnakeGameDriver.potionCount++;
                     SnakeGameDriver.playerPosition.x = Math.max(0, SnakeGameDriver.playerPosition.x + 2);

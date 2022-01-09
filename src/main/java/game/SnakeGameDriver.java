@@ -207,7 +207,6 @@ public class SnakeGameDriver {
             }
 
             if (Arrays.asList(snakePositions).contains(playerPosition)) {
-                shieldCount++;
                 if (shieldActive && shieldCount > 8) {
                     shieldActive = false;
                 }
