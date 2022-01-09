@@ -66,6 +66,12 @@ public class SnakeGameDriver {
                 BoardLevel.drawLevelOne(playerPosition, goldPosition, doorPosition,
                         snakePositions, springboardPosition, magicPotionPosition,
                         shieldPosition, swordPosition);
+
+                if (playerPosition.equals(goldPosition)) {
+                    ++achievedPoints;
+                    rich = true;
+                    goldPosition.setLocation(-10, -10);
+                }
             }
 
             if (level == 2) {
@@ -76,14 +82,13 @@ public class SnakeGameDriver {
 
                 if (playerPosition.equals(goldPositions[0])) {
                     ++achievedPoints;
-                    rich = true;
-                    goldPositions[0].setLocation(-1, -1);
+                    goldPositions[0].setLocation(-10, -10);
                 }
                 if (playerPosition.equals(goldPositions[1])) {
                     ++achievedPoints;
-                    rich = true;
-                    goldPositions[1].setLocation(-1, -1);
+                    goldPositions[1].setLocation(-10, -10);
                 }
+                if (achievedPoints == 3) rich = true;
             }
 
             if (level == 3) {
@@ -94,19 +99,17 @@ public class SnakeGameDriver {
 
                 if (playerPosition.equals(goldPositions2[0])) {
                     ++achievedPoints;
-                    rich = true;
-                    goldPositions2[0].setLocation(-1, -1);
+                    goldPositions2[0].setLocation(-10, -10);
                 }
                 if (playerPosition.equals(goldPositions2[1])) {
                     ++achievedPoints;
-                    rich = true;
-                    goldPositions2[1].setLocation(-1, -1);
+                    goldPositions2[1].setLocation(-10, -10);
                 }
                 if (playerPosition.equals(goldPositions2[2])) {
                     ++achievedPoints;
-                    rich = true;
-                    goldPositions2[2].setLocation(-1, -1);
+                    goldPositions2[2].setLocation(-10, -10);
                 }
+                if (achievedPoints == 6) rich = true;
             }
 
             // Zusätzliche Informationen
@@ -202,7 +205,7 @@ public class SnakeGameDriver {
 
             if (Arrays.asList(snakePositions).contains(playerPosition)) {
                 shieldCount++;
-                if (shieldActive && shieldCount > 5) {
+                if (shieldActive && shieldCount > 8) {
                     shieldActive = false;
                 }
                 else if (swordActive) {
@@ -211,12 +214,6 @@ public class SnakeGameDriver {
                     System.out.println("ZZZZZZZ. Die Schlange hat dich!");
                     return;
                 }
-            }
-
-            if (playerPosition.equals(goldPosition)) {
-                ++achievedPoints;
-                rich = true;
-                goldPosition.setLocation(-1, -1);
             }
 
         }

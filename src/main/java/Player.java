@@ -13,7 +13,7 @@ public class Player {
                 if (SnakeGameDriver.potionActive) {
                     SnakeGameDriver.potionCount++;
                     SnakeGameDriver.playerPosition.y = Math.max(0, SnakeGameDriver.playerPosition.y - 2);
-                    if (SnakeGameDriver.potionCount == 5) {
+                    if (SnakeGameDriver.potionCount > 8) {
                         SnakeGameDriver.potionActive = false;
                     }
                 } else if (SnakeGameDriver.boardActive) {
@@ -30,7 +30,7 @@ public class Player {
                 if (SnakeGameDriver.potionActive) {
                     SnakeGameDriver.potionCount++;
                     SnakeGameDriver.playerPosition.y = Math.max(0, SnakeGameDriver.playerPosition.y + 2);
-                    if (SnakeGameDriver.potionCount == 5) {
+                    if (SnakeGameDriver.potionCount > 8) {
                         SnakeGameDriver.potionActive = false;
                     }
                 } else if (SnakeGameDriver.boardActive) {
@@ -51,7 +51,7 @@ public class Player {
                 if (SnakeGameDriver.potionActive) {
                     SnakeGameDriver.potionCount++;
                     SnakeGameDriver.playerPosition.x = Math.max(0, SnakeGameDriver.playerPosition.x - 2);
-                    if (SnakeGameDriver.potionCount == 5) {
+                    if (SnakeGameDriver.potionCount > 8) {
                         SnakeGameDriver.potionActive = false;
                     }
                 } else if (SnakeGameDriver.boardActive) {
@@ -68,7 +68,7 @@ public class Player {
                 if (SnakeGameDriver.potionActive) {
                     SnakeGameDriver.potionCount++;
                     SnakeGameDriver.playerPosition.x = Math.max(0, SnakeGameDriver.playerPosition.x + 2);
-                    if (SnakeGameDriver.potionCount == 5) {
+                    if (SnakeGameDriver.potionCount > 8) {
                         SnakeGameDriver.potionActive = false;
                     }
                 } else if (SnakeGameDriver.boardActive) {
