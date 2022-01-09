@@ -28,7 +28,7 @@ public class Player {
             case "w":
                 if (SnakeGameDriver.potionActive) {
                     SnakeGameDriver.potionCount++;
-                    position.y = Math.max(0, position.y - 2); //Math.max verhindert, dass derSoieleraußerhalb des Spielfelds laufen kann
+                    position.y = Math.max(0, position.y - 2); //Math.max verhindert, dass der Spieleraußerhalb des Spielfelds laufen kann
                     if (SnakeGameDriver.potionCount > 8) {    //damit der Zaubertrank nur 7 Züge aktiv ist
                         SnakeGameDriver.potionActive = false;
                     }
