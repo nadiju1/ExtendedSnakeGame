@@ -1,8 +1,8 @@
+package game;
+
 import java.util.Scanner;
 
 public class Player {
-
-
     public static void addPlayerMovement() {
 
         switch (new Scanner(System.in).next()) {
@@ -86,5 +86,4 @@ public class Player {
                 break;
         }
     }
-
 }

@@ -1,5 +1,6 @@
-public class Snake {
+package game;
 
+public class Snake {
     public static void addSnakeMovement() {
 
         if (SnakeGameDriver.stepCount > 15) {
