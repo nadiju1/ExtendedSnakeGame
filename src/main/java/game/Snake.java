@@ -12,11 +12,15 @@ public class Snake {
         positions[snakeIdx] = new Point ((int) (Math.random() * 59), (int) (Math.random() * 9));
     }
 
-    public void addSnakeMovement(Point playerPosition) {
+    public Snake (int x, int y){    //wird zum Testen gebrtaucht
+        positions[0] = new Point (x,y);
+    }
+
+    public void addSnakeMovement(int stepCount, Point playerPosition) {
 
         head = new Point(positions[snakeIdx].x, positions[snakeIdx].y);
 
-        if (SnakeGameDriver.stepCount > 15) {
+        if (stepCount > 15) {
 
             if (playerPosition.x < head.x) {
                 head.x--;
@@ -27,7 +31,7 @@ public class Snake {
             if (playerPosition.y < head.y) {
                 head.y--;
             }
-            else if (playerPosition.y > head.y++) {
+            else if (playerPosition.y > head.y++) { // das head.y++ sorgt für den Zicksacklauf
                 head.y++;
             }
 
@@ -48,5 +52,11 @@ public class Snake {
         }
     }
 
+    public int getPositionX (int arrayNumber){ // wird zum Testen gebraucht
+        return positions[arrayNumber].x;
+    }
 
+    public int getPositionY (int arrayNumber){
+        return positions[arrayNumber].y;
+    }
 }

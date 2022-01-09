@@ -2,11 +2,11 @@ package game;
 
 import java.awt.*;
 import java.util.Arrays;
+import java.util.Scanner;
 import java.util.prefs.Preferences;
 
 public class SnakeGameDriver {
 
-    static int stepCount = 0;
     static int shieldCount = 0;
     static int level = 1;
     static int achievedPoints = 0;
@@ -120,18 +120,19 @@ public class SnakeGameDriver {
             System.out.println("Movement:  w = go up, a = go left, s = go down, d = go right");
             System.out.println("magic potion: " + potionActive + ", shield: " + shieldActive +
                     ", sword: " + swordActive + ", springboard: " + springboardActive + ", rich: " + rich);
-            if (stepCount <= 15) System.out.println(snakeAsleep);
-            if (stepCount > 15) System.out.println(snakeAwake);
+            if (player.stepCount <= 15) System.out.println(snakeAsleep);
+            if (player.stepCount > 15) System.out.println(snakeAwake);
 
-            snake.addSnakeMovement(player.position);
-            player.addPlayerMovement();
+            snake.addSnakeMovement(player.stepCount, player.position);
+            String input = new Scanner(System.in).next();
+            player.addPlayerMovement(input);
             
 
             // Status feststellen -> collision detection
 
             if ((level == 1 && rich && player.position.equals(doorPosition)) ||
                     (level == 2 && rich && player.position.equals(doorPosition2))) {
-                stepCount = 0;
+                player.stepCount = 0;
                 potionCount = 0;
                 shieldCount = 0;
                 potionActive = false;

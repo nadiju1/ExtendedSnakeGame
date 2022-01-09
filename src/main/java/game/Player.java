@@ -1,25 +1,29 @@
 package game;
 
 import java.awt.*;
-import java.util.Scanner;
 
 public class Player {
 
     Point position = new Point();
-    
+    int stepCount = 0;
+
     public Player (){
         position.setLocation((int) (Math.random() * 59), (int) (Math.random() * 9));  
     }
 
-    public void addPlayerMovement() {
+    public Player (int x, int y){  // wird zum Testen gebraucht
+        position.setLocation(x,y);
+    }
 
-        SnakeGameDriver.stepCount++;
+    public void addPlayerMovement( String input ) {
+
+        stepCount++;
 
         if (SnakeGameDriver.shieldActive) {
             SnakeGameDriver.shieldCount++;
         }
 
-        switch (new Scanner(System.in).next()) {
+        switch (input) {
 
             case "w":
                 if (SnakeGameDriver.potionActive) {
@@ -91,5 +95,12 @@ public class Player {
                 }
                 break;
         }
+    }
+
+    public int getPositionX (){  // wird zum Testen gebraucht
+        return position.x;
+    }
+    public int getPositionY (){
+        return position.y;
     }
 }
