@@ -16,9 +16,9 @@ public class Player {
                     if (SnakeGameDriver.potionCount > 8) {
                         SnakeGameDriver.potionActive = false;
                     }
-                } else if (SnakeGameDriver.boardActive) {
+                } else if (SnakeGameDriver.springboardActive) {
                     SnakeGameDriver.playerPosition.y = Math.max(0, SnakeGameDriver.playerPosition.y - 5);
-                    SnakeGameDriver.boardActive = false;
+                    SnakeGameDriver.springboardActive = false;
                 } else {
                     SnakeGameDriver.playerPosition.y = Math.max(0, SnakeGameDriver.playerPosition.y - 1);
                 }
@@ -33,9 +33,9 @@ public class Player {
                     if (SnakeGameDriver.potionCount > 8) {
                         SnakeGameDriver.potionActive = false;
                     }
-                } else if (SnakeGameDriver.boardActive) {
+                } else if (SnakeGameDriver.springboardActive) {
                     SnakeGameDriver.playerPosition.y = Math.max(0, SnakeGameDriver.playerPosition.y + 5);
-                    SnakeGameDriver.boardActive = false;
+                    SnakeGameDriver.springboardActive = false;
                 } else {
                     if (SnakeGameDriver.level == 1) {
                         SnakeGameDriver.playerPosition.y = Math.min(9, SnakeGameDriver.playerPosition.y + 1);
@@ -54,9 +54,9 @@ public class Player {
                     if (SnakeGameDriver.potionCount > 8) {
                         SnakeGameDriver.potionActive = false;
                     }
-                } else if (SnakeGameDriver.boardActive) {
+                } else if (SnakeGameDriver.springboardActive) {
                     SnakeGameDriver.playerPosition.x = Math.max(0, SnakeGameDriver.playerPosition.x - 8);
-                    SnakeGameDriver.boardActive = false;
+                    SnakeGameDriver.springboardActive = false;
                 } else {
                     SnakeGameDriver.playerPosition.x = Math.max(0, SnakeGameDriver.playerPosition.x - 1);
                 }
@@ -71,9 +71,9 @@ public class Player {
                     if (SnakeGameDriver.potionCount > 8) {
                         SnakeGameDriver.potionActive = false;
                     }
-                } else if (SnakeGameDriver.boardActive) {
+                } else if (SnakeGameDriver.springboardActive) {
                     SnakeGameDriver.playerPosition.x = Math.max(0, SnakeGameDriver.playerPosition.x + 8);
-                    SnakeGameDriver.boardActive = false;
+                    SnakeGameDriver.springboardActive = false;
                 } else {
                     if (SnakeGameDriver.level == 1) {
                         SnakeGameDriver.playerPosition.x = Math.min(59, SnakeGameDriver.playerPosition.x + 1);

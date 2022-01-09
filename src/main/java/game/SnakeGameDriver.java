@@ -15,7 +15,7 @@ public class SnakeGameDriver {
     static boolean potionActive = false;
     static boolean shieldActive = false;
     static boolean swordActive = false;
-    static boolean boardActive = false;
+    static boolean springboardActive = false;
     static Point[] snakePositions = new Point[3];
     static Point playerPosition = new Point((int) (Math.random() * 59), (int) (Math.random() * 9));
     static Point snakeHead;
@@ -123,7 +123,7 @@ public class SnakeGameDriver {
                     "Y = magic potion, O = shield, V = sword");
             System.out.println("Movement:  w = go up, a = go left, s = go down, d = go right");
             System.out.println("magic potion: " + potionActive + ", shield: " + shieldActive +
-                    ", sword: " + swordActive + ", springboard: " + boardActive + ", rich: " + rich);
+                    ", sword: " + swordActive + ", springboard: " + springboardActive + ", rich: " + rich);
             if (stepCount <= 15) System.out.println(snakeAsleep);
             if (stepCount > 15) System.out.println(snakeAwake);
 
@@ -142,7 +142,7 @@ public class SnakeGameDriver {
                 potionActive = false;
                 shieldActive = false;
                 swordActive = false;
-                boardActive = false;
+                springboardActive = false;
                 rich = false;
                 level++;
             }
@@ -188,7 +188,7 @@ public class SnakeGameDriver {
 
             if (playerPosition.equals(springboardPosition) || playerPosition.equals(springboardPosition2)
                     || playerPosition.equals(springboardPosition3)) {
-                boardActive = true;
+                springboardActive = true;
             }
 
             if (playerPosition.equals(swordPosition)) {
