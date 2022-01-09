@@ -1,3 +1,5 @@
+package game;
+
 import java.awt.*;
 import java.util.Arrays;
 import java.util.prefs.Preferences;
@@ -146,11 +148,12 @@ public class SnakeGameDriver {
             }
 
             if (level == 3 && rich && playerPosition.equals(doorPosition3)) {
-                if (achievedPoints > pref.getInt(item1, 0)) {
-                    pref.putInt(item1, achievedPoints);
-                }
                 System.out.println("Gewonnen!");
                 return;
+            }
+
+            if (achievedPoints > pref.getInt(item1, 0)) {
+                pref.putInt(item1, achievedPoints);
             }
 
             if (playerPosition.equals(shieldPosition)) {
