@@ -1,25 +1,40 @@
 package game;
 
+import java.awt.*;
+
 public class Snake {
-    public static void addSnakeMovement() {
+
+    Point[] positions = new Point[3];
+    Point head;
+    int snakeIdx = 0;
+
+    public Snake () {
+        positions[snakeIdx] = new Point ((int) (Math.random() * 59), (int) (Math.random() * 9));
+    }
+
+    public void addSnakeMovement(Point playerPosition) {
+
+        head = new Point(positions[snakeIdx].x, positions[snakeIdx].y);
 
         if (SnakeGameDriver.stepCount > 15) {
 
-            if (SnakeGameDriver.playerPosition.x < SnakeGameDriver.snakeHead.x) {
-                SnakeGameDriver.snakeHead.x--;
+            if (playerPosition.x < head.x) {
+                head.x--;
             }
-            else if (SnakeGameDriver.playerPosition.x > SnakeGameDriver.snakeHead.x) {
-                SnakeGameDriver.snakeHead.x++;
+            else if (playerPosition.x > head.x) {
+                head.x++;
             }
-            if (SnakeGameDriver.playerPosition.y < SnakeGameDriver.snakeHead.y) {
-                SnakeGameDriver.snakeHead.y--;
+            if (playerPosition.y < head.y) {
+                head.y--;
             }
-            else if (SnakeGameDriver.playerPosition.y > SnakeGameDriver.snakeHead.y++) {
-                SnakeGameDriver.snakeHead.y++;
+            else if (playerPosition.y > head.y++) {
+                head.y++;
             }
 
-            SnakeGameDriver.snakeIdx = (SnakeGameDriver.snakeIdx + 1) % SnakeGameDriver.snakePositions.length;
-            SnakeGameDriver.snakePositions[SnakeGameDriver.snakeIdx] = SnakeGameDriver.snakeHead;
+            snakeIdx = (snakeIdx + 1) % positions.length;
+            positions[snakeIdx] = head;
         }
     }
+
+
 }

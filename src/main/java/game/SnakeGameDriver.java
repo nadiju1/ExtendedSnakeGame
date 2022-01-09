@@ -8,7 +8,6 @@ public class SnakeGameDriver {
 
     static int stepCount = 0;
     static int shieldCount = 0;
-    static int snakeIdx = 0;
     static int level = 1;
     static int achievedPoints = 0;
     static int potionCount = 0;
@@ -16,9 +15,6 @@ public class SnakeGameDriver {
     static boolean shieldActive = false;
     static boolean swordActive = false;
     static boolean springboardActive = false;
-    static Point[] snakePositions = new Point[3];
-    static Point playerPosition = new Point((int) (Math.random() * 59), (int) (Math.random() * 9));
-    static Point snakeHead;
     static String snakeAsleep = "Snake is still asleep...";
     static String snakeAwake = "Watch out, Snake is awake!";
 
@@ -32,8 +28,8 @@ public class SnakeGameDriver {
         Point shieldPosition = new Point((int) (Math.random() * 59), (int) (Math.random() * 9));
         Point springboardPosition = new Point((int) (Math.random() * 59), (int) (Math.random() * 9));
         Point swordPosition = new Point((int) (Math.random() * 59), (int) (Math.random() * 9));
-        SnakeGameDriver.snakePositions[SnakeGameDriver.snakeIdx] = new Point((int) (Math.random() * 59),
-                (int) (Math.random() * 9));
+        Player player = new Player();
+        Snake snake = new Snake ();
 
         // Level 2 Elemente
         Point doorPosition2 = new Point((int) (Math.random() * 69), (int) (Math.random() * 14));
@@ -56,7 +52,7 @@ public class SnakeGameDriver {
         Point springboardPosition3 = new Point((int) (Math.random() * 79), (int) (Math.random() * 14));
         Point swordPosition3 = new Point((int) (Math.random() * 79), (int) (Math.random() * 14));
 
-        boolean rich = false;
+        boolean rich = false; // man braucht alle Golstücke für true
 
         // Wird benötigt um Highscore zu speichern
         Preferences pref = Preferences.userNodeForPackage(SnakeGameDriver.class);
@@ -65,11 +61,11 @@ public class SnakeGameDriver {
         while (true) {
 
             if (level == 1) {
-                BoardLevel.drawLevelOne(playerPosition, goldPosition, doorPosition,
-                        snakePositions, springboardPosition, magicPotionPosition,
+                BoardLevel.drawLevelOne(player.position, goldPosition, doorPosition,
+                        snake.positions, springboardPosition, magicPotionPosition,
                         shieldPosition, swordPosition);
 
-                if (playerPosition.equals(goldPosition)) {
+                if (player.position.equals(goldPosition)) {
                     ++achievedPoints;
                     rich = true;
                     goldPosition.setLocation(-10, -10);
@@ -78,15 +74,15 @@ public class SnakeGameDriver {
 
             if (level == 2) {
 
-                BoardLevel.drawLevelTwo(playerPosition, goldPositions, doorPosition2,
-                        snakePositions, springboardPosition2, magicPotionPosition2,
+                BoardLevel.drawLevelTwo(player.position, goldPositions, doorPosition2,
+                        snake.positions, springboardPosition2, magicPotionPosition2,
                         shieldPosition2, swordPosition2);
 
-                if (playerPosition.equals(goldPositions[0])) {
+                if (player.position.equals(goldPositions[0])) {
                     ++achievedPoints;
                     goldPositions[0].setLocation(-10, -10);
                 }
-                if (playerPosition.equals(goldPositions[1])) {
+                if (player.position.equals(goldPositions[1])) {
                     ++achievedPoints;
                     goldPositions[1].setLocation(-10, -10);
                 }
@@ -95,19 +91,19 @@ public class SnakeGameDriver {
 
             if (level == 3) {
 
-                BoardLevel.drawLevelThree(playerPosition, goldPositions2, doorPosition3,
-                        snakePositions, springboardPosition3, magicPotionPosition3,
+                BoardLevel.drawLevelThree(player.position, goldPositions2, doorPosition3,
+                        snake.positions, springboardPosition3, magicPotionPosition3,
                         shieldPosition3, swordPosition3);
 
-                if (playerPosition.equals(goldPositions2[0])) {
+                if (player.position.equals(goldPositions2[0])) {
                     ++achievedPoints;
                     goldPositions2[0].setLocation(-10, -10);
                 }
-                if (playerPosition.equals(goldPositions2[1])) {
+                if (player.position.equals(goldPositions2[1])) {
                     ++achievedPoints;
                     goldPositions2[1].setLocation(-10, -10);
                 }
-                if (playerPosition.equals(goldPositions2[2])) {
+                if (player.position.equals(goldPositions2[2])) {
                     ++achievedPoints;
                     goldPositions2[2].setLocation(-10, -10);
                 }
@@ -127,15 +123,14 @@ public class SnakeGameDriver {
             if (stepCount <= 15) System.out.println(snakeAsleep);
             if (stepCount > 15) System.out.println(snakeAwake);
 
-            Snake.addSnakeMovement();
-            Player.addPlayerMovement();
-            snakeHead = new Point(SnakeGameDriver.snakePositions[SnakeGameDriver.snakeIdx].x,
-                    SnakeGameDriver.snakePositions[SnakeGameDriver.snakeIdx].y);
+            snake.addSnakeMovement(player.position);
+            player.addPlayerMovement();
+            
 
             // Status feststellen -> collision detection
 
-            if ((level == 1 && rich && playerPosition.equals(doorPosition)) ||
-                    (level == 2 && rich && playerPosition.equals(doorPosition2))) {
+            if ((level == 1 && rich && player.position.equals(doorPosition)) ||
+                    (level == 2 && rich && player.position.equals(doorPosition2))) {
                 stepCount = 0;
                 potionCount = 0;
                 shieldCount = 0;
@@ -147,7 +142,7 @@ public class SnakeGameDriver {
                 level++;
             }
 
-            if (level == 3 && rich && playerPosition.equals(doorPosition3)) {
+            if (level == 3 && rich && player.position.equals(doorPosition3)) {
                 System.out.println("Gewonnen!");
                 return;
             }
@@ -156,62 +151,62 @@ public class SnakeGameDriver {
                 pref.putInt(item1, achievedPoints);
             }
 
-            if (playerPosition.equals(shieldPosition)) {
+            if (player.position.equals(shieldPosition)) {
                 shieldActive = true;
                 shieldPosition.setLocation(-5, -5);
             }
 
-            if (playerPosition.equals(shieldPosition2)) {
+            if (player.position.equals(shieldPosition2)) {
                 shieldActive = true;
                 shieldPosition2.setLocation(-5, -5);
             }
 
-            if (playerPosition.equals(shieldPosition3)) {
+            if (player.position.equals(shieldPosition3)) {
                 shieldActive = true;
                 shieldPosition3.setLocation(-5, -5);
             }
 
-            if (playerPosition.equals(magicPotionPosition)) {
+            if (player.position.equals(magicPotionPosition)) {
                 potionActive = true;
                 magicPotionPosition.setLocation(-2, -3);
             }
 
-            if (playerPosition.equals(magicPotionPosition2)) {
+            if (player.position.equals(magicPotionPosition2)) {
                 potionActive = true;
                 magicPotionPosition2.setLocation(-2, -3);
             }
 
-            if (playerPosition.equals(magicPotionPosition3)) {
+            if (player.position.equals(magicPotionPosition3)) {
                 potionActive = true;
                 magicPotionPosition3.setLocation(-2, -3);
             }
 
-            if (playerPosition.equals(springboardPosition) || playerPosition.equals(springboardPosition2)
-                    || playerPosition.equals(springboardPosition3)) {
+            if (player.position.equals(springboardPosition) || player.position.equals(springboardPosition2)
+                    || player.position.equals(springboardPosition3)) {
                 springboardActive = true;
             }
 
-            if (playerPosition.equals(swordPosition)) {
+            if (player.position.equals(swordPosition)) {
                 swordActive = true;
                 swordPosition.setLocation(-6, -7);
             }
 
-            if (playerPosition.equals(swordPosition2)) {
+            if (player.position.equals(swordPosition2)) {
                 swordActive = true;
                 swordPosition2.setLocation(-6, -7);
             }
 
-            if (playerPosition.equals(swordPosition3)) {
+            if (player.position.equals(swordPosition3)) {
                 swordActive = true;
                 swordPosition3.setLocation(-6, -7);
             }
 
-            if (Arrays.asList(snakePositions).contains(playerPosition)) {
+            if (Arrays.asList(snake.positions).contains(player.position)) {
                 if (shieldActive && shieldCount > 8) {
                     shieldActive = false;
                 }
                 else if (swordActive) {
-                    snakeHead.setLocation(-10, -10);
+                    snake.head.setLocation(-10, -10);
                 } else if (!shieldActive){
                     System.out.println("ZZZZZZZ. Die Schlange hat dich!");
                     return;
