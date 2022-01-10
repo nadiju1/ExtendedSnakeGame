@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class Snake {
 
-    Point[] positions = new Point[3]; // positions.length gibt Länge der Schlange an
+    Point[] positions = new Point[3]; // positions.length gibt die Länge der Schlange an
     Point head;
     int snakeIdx = 0;
 
@@ -54,7 +54,7 @@ public class Snake {
 
     public int getPositionX (int arrayNumber){ // wird zum Testen gebraucht
         return positions[arrayNumber].x;
-    }
+    } //wird zum Testen gebraucht
 
     public int getPositionY (int arrayNumber){
         return positions[arrayNumber].y;

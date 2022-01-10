@@ -1,4 +1,5 @@
 package unittest;
+
 import game.Snake;
 import java.awt.*;
 import org.junit.Assert;
@@ -8,11 +9,10 @@ public class TestSnake {
 
     @Test
     public void testStepCountBreak() {
-
         Snake testSnake = new Snake(45, 5);
         Point testPlayerPosition = new Point(1, 1);
         for (int i = 0; i < 15; i++) {
-            testSnake.addSnakeMovement(i, testPlayerPosition);
+            testSnake.addSnakeMovement(i, testPlayerPosition); // stepCount = i
         }
         Assert.assertEquals(45, testSnake.getPositionX(0));
         Assert.assertEquals(5, testSnake.getPositionY(0));
@@ -24,7 +24,7 @@ public class TestSnake {
         Point testPlayerPosition = new Point(45, 10);
         testSnake.addSnakeMovement(20, testPlayerPosition);
         Assert.assertEquals(45, testSnake.getPositionX(1)); // arrayNumber 1, weil die Arrays immer in einer Rotation verändert werden
-        Assert.assertEquals(7, testSnake.getPositionY(1)); //immer xKoordinate + 1 wegen den Zickzacklauf außer xSpielerkoordinate < als Schlangenkoordinate
+        Assert.assertEquals(7, testSnake.getPositionY(1)); //immer yKoordinate + 1 wegen den Zickzacklauf außer ySpielerkoordinate < als Schlangenkoordinate
 
     }
     @Test

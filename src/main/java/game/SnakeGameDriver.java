@@ -59,7 +59,9 @@ public class SnakeGameDriver {
         final String item1 = "item1";
 
         //Spielanleitung
-        System.out.println();
+        System.out.println("\nSammle alle Goldstücke ohne von der Schlange erwischt zu werden.\n" +
+                           "Erreiche danach die Tür, um erfolgreich in den nächsten Raum zu flüchten.\n" +
+                           "Ein paar Gegenstände könnten nützlich sein. Probiere sie aus.\n");
 
         while (true) {
 

@@ -99,7 +99,7 @@ public class Player {
 
     public int getPositionX (){  // wird zum Testen gebraucht
         return position.x;
-    }
+    }  //wird zum Testen gebraucht
     public int getPositionY (){
         return position.y;
     }
