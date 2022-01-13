@@ -47,5 +47,5 @@ Die Klassen
 
 
 Sonstiges
-	Die JavaDoc für die Klassen SnakeGameDriver, Snake, Player und BoardLevel ist zu finden unter SnakeGameExtended\javadoc\game
-	Die jar ist unter SnakeGameExtended\.idea\artifacts zu finden.
+	Die JavaDoc für die Klassen SnakeGameDriver, Snake, Player und BoardLevel ist zu finden unter ExtendedSnakeGame\javadoc\game
+	Die jar ist unter ExtendedSnakeGame\out\artifacts\ExtendedSnakeGame_jar zu finden.
