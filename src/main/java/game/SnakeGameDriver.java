@@ -5,8 +5,9 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.util.prefs.Preferences;
 
+/**Die Driver Klasse */
 public class SnakeGameDriver {
-
+/** Notwendige Variablen werden deklariert und auf die Anfangseinstellung gesetzt. */
     static int shieldCount = 0;
     static int level = 1;
     static int achievedPoints = 0;
@@ -19,9 +20,10 @@ public class SnakeGameDriver {
     static String snakeAwake = "Watch out, Snake is awake!";
 
     @SuppressWarnings( "resource" )
+    /*Die Main Methode die zur Ausführung der Klasse benötigt wird.*/
     public static void main( String[] args ) {
 
-        // Level 1 Elemente
+        /* Variablen für die Elemente im ersten Level werden deklariert. */
         Point goldPosition = new Point((int) (Math.random() * 59), (int) (Math.random() * 9));
         Point doorPosition = new Point((int) (Math.random() * 59), (int) (Math.random() * 9));
         Point magicPotionPosition = new Point((int) (Math.random() * 59), (int) (Math.random() * 9));
@@ -31,7 +33,9 @@ public class SnakeGameDriver {
         Player player = new Player();
         Snake snake = new Snake ();
 
-        // Level 2 Elemente
+        /* Variablen für die Elemente im zweiten Level werden deklariert. Es kommt ein weiteres Goldstück zum Einsammeln hinzu.
+         * Die Gegenstände werden für das zweite Level neu deklariert, damit sie eine neue Position im neuen Level bekommen.
+         * Der Spieler und die Schlange bleiben gleich und werden nicht für jedes Level neu deklariert. */
         Point doorPosition2 = new Point((int) (Math.random() * 69), (int) (Math.random() * 14));
         Point[] goldPositions = new Point[2];
         goldPositions[0] = new Point((int) (Math.random() * 69), (int) (Math.random() * 14));
@@ -41,7 +45,7 @@ public class SnakeGameDriver {
         Point springboardPosition2 = new Point((int) (Math.random() * 69), (int) (Math.random() * 14));
         Point swordPosition2 = new Point((int) (Math.random() * 69), (int) (Math.random() * 14));
 
-        // Level 3 Elemente
+       /* Variablen für die Elemente im dritten Level werden deklariert. Es kommt wieder ein neues Goldstück hinzu. */
         Point doorPosition3 = new Point((int) (Math.random() * 79), (int) (Math.random() * 14));
         Point[] goldPositions2 = new Point[3];
         goldPositions2[0] = new Point((int) (Math.random() * 79), (int) (Math.random() * 14));
@@ -52,19 +56,22 @@ public class SnakeGameDriver {
         Point springboardPosition3 = new Point((int) (Math.random() * 79), (int) (Math.random() * 14));
         Point swordPosition3 = new Point((int) (Math.random() * 79), (int) (Math.random() * 14));
 
+        /* Die boolean Variable rich wird erst true wenn man alle Goldstücke hat. */
         boolean rich = false; // man braucht alle Golstücke für true
 
-        // Wird benötigt um Highscore zu speichern
+        /*Wird benötigt, um den Highscore zu speichern. */
         Preferences pref = Preferences.userNodeForPackage(SnakeGameDriver.class);
         final String item1 = "item1";
 
-        //Spielanleitung
+        /*Eine Spielanleitung wird für den Benutzer ausgegeben. */
         System.out.println("\nSammle alle Goldstücke ohne von der Schlange erwischt zu werden.\n" +
                            "Erreiche danach die Tür, um erfolgreich in den nächsten Raum zu flüchten.\n" +
                            "Ein paar Gegenstände könnten nützlich sein. Probiere sie aus.\n");
 
         while (true) {
-
+        /* Falls level gleich 1 ist, wird das erste Level in der Konsole gezeichnet.
+        * Falls die Position des Spielers mit der Position des Goldes übereinstimmt, wird die boolean Variable rich auf true gesetzt,
+        * die Variable achievedPoints wird erhöht und die Position des Goldes vom Spielfeld entfernt.*/
             if (level == 1) {
                 BoardLevel.drawLevelOne(player.position, goldPosition, doorPosition,
                         snake.positions, springboardPosition, magicPotionPosition,
@@ -77,8 +84,10 @@ public class SnakeGameDriver {
                 }
             }
 
+            /* Falls die Variable level gleich 2 ist, wird das zweite Level in der Konsole gezeichnet.
+             * In einer weiteren IF Überprüfung wird geschaut, ob die Spielerposition mit den Goldpositionen übereinstimmt.
+             * Die Variable achievedPoints muss den Wert 3 haben, damit die boolean Variable rich true wird. */
             if (level == 2) {
-
                 BoardLevel.drawLevelTwo(player.position, goldPositions, doorPosition2,
                         snake.positions, springboardPosition2, magicPotionPosition2,
                         shieldPosition2, swordPosition2);
@@ -94,8 +103,9 @@ public class SnakeGameDriver {
                 if (achievedPoints == 3) rich = true;
             }
 
+            /*Wenn die Variable level den Wert 3 hat, wird das Spielfeld des dritten Levels ausgegeben.
+            * In diesem Level muss die Variable achievedPoints den Wert 6 haben, damit die boolean Variable rich zu true wird.*/
             if (level == 3) {
-
                 BoardLevel.drawLevelThree(player.position, goldPositions2, doorPosition3,
                         snake.positions, springboardPosition3, magicPotionPosition3,
                         shieldPosition3, swordPosition3);
@@ -115,8 +125,8 @@ public class SnakeGameDriver {
                 if (achievedPoints == 6) rich = true;
             }
 
-            // Zusätzliche Informationen
-
+            /* Zusätzliche Informationen werden für den Benutzer ausgegeben. Es wird das Level, die aktuelle Punktezahl und der Highscore,
+             * sowie eine Erklärung der Zeichen im Spielfeld ausgegeben. Es wird auch gezeigt, ob aktuell ein Gegenstand (z.B. Shield) aktiv ist.*/
             System.out.println("Level: " + level);
             System.out.println("Current score: " + achievedPoints);
             System.out.println("Highscore: " + pref.getInt(item1, 0));
@@ -128,13 +138,15 @@ public class SnakeGameDriver {
             if (player.stepCount <= 15) System.out.println(snakeAsleep);
             if (player.stepCount > 15) System.out.println(snakeAwake);
 
+            /* Die Bewegung der Schlange wird eingefügt*/
             snake.addSnakeMovement(player.stepCount, player.position);
 
+            /* Die Eingabe des Spielers wird ermöglicht durch den Scanner. */
             String input = new Scanner(System.in).next();
             player.addPlayerMovement(input);
 
-            // Status feststellen -> collision detection
 
+            // Status feststellen -> collision detection
             if ((level == 1 && rich && player.position.equals(doorPosition)) ||
                     (level == 2 && rich && player.position.equals(doorPosition2))) {
                 player.stepCount = 0;
@@ -211,6 +223,9 @@ public class SnakeGameDriver {
                shieldActive = false; // verhindert, dass das Schild dauerhaft aktiv ist
             }
 
+        /* Wenn das Array snake.positions die aktuelle Position des Spielers enthält, wird eine weitere IF Überprüfung ausgeführt.
+         * Wenn nun das swordActive true ist, wird die Schlange getötet, wodurch die Position des Schlangenkopfes vom Spielfeld entfernt wird.
+         * Wenn shieldActive NICHT true ist, wird ausgegeben, dass man von der Schlange gefangen wurde. */
             if (Arrays.asList(snake.positions).contains(player.position)) {
                 if (swordActive) {
                     snake.head.setLocation(-10, -10);
@@ -220,7 +235,7 @@ public class SnakeGameDriver {
                 }
             }
 
-        }
+        } // While Schleife wird hier erst geschlossen.
     }
 }
 
